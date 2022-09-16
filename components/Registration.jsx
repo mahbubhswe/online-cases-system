@@ -17,6 +17,7 @@ import { validationSchema } from "../utils/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 export default function Login() {
   const [open, setOpen] = useState(false);
+  const [mes, setMes] = useState();
   const {
     register,
     handleSubmit,
@@ -25,7 +26,17 @@ export default function Login() {
     resolver: yupResolver(validationSchema),
   });
   //signup
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    setMes("");
+    try {
+      setOpen(true);
+      const apiRes = await axios.post(`/api/auth/registration`, data);
+      setOpen(false);
+      setMes(apiRes.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <Container
@@ -51,7 +62,17 @@ export default function Login() {
           >
             Create a account
           </Typography>
-
+          <Typography
+            sx={{
+              color:
+                mes == "Account has been created successfully"
+                  ? "green"
+                  : "red",
+            }}
+            align="center"
+          >
+            {mes ? mes : null}
+          </Typography>
           <TextField
             type="text"
             placeholder="Enter your name"

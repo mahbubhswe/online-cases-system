@@ -40,7 +40,4 @@ export const validationSchema = yup.object({
       [yup.ref("password"), null],
       "Confirm password must be matched with the password"
     ),
-  createdOn: yup.date().default(function () {
-    return new Date();
-  }),
 });

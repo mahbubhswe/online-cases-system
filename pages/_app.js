@@ -8,25 +8,27 @@ import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 import Navbar from "../components/Navbar";
-
+import StoreProvider from "../utils/Store";
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <CacheProvider value={emotionCache}>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div>
-          <Navbar />
-          <Component {...pageProps} />
-        </div>
-      </ThemeProvider>
-    </CacheProvider>
+    <StoreProvider>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div>
+            <Navbar />
+            <Component {...pageProps} />
+          </div>
+        </ThemeProvider>
+      </CacheProvider>
+    </StoreProvider>
   );
 }
 

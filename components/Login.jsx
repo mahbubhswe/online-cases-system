@@ -8,13 +8,19 @@ import {
   Backdrop,
   CircularProgress,
 } from "@mui/material";
-import React, { useState } from "react";
+import Cookies from "js-cookie";
+import React, { useState, useContext } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
+import { contextStore } from "../utils/Store";
+import { useRouter } from "next/router";
 export default function Login() {
   const [open, setOpen] = useState(false);
+  const [mes, setMess] = useState();
+  const router = useRouter();
+  const { dispatch } = useContext(contextStore);
   const [loginCredentials, setLoginCredential] = useState({
-    email: "",
+    phone: "",
     password: "",
   });
   //login
@@ -22,8 +28,17 @@ export default function Login() {
     e.preventDefault();
     e.target.reset();
     setOpen(true);
-    // const { data } = await axios.post();
+    const { data } = await axios.post(
+      `/api/auth/login?phone=${loginCredentials.phone}&password=${loginCredentials.password}`
+    );
     setOpen(false);
+    if (loginCredentials.phone.localeCompare(data.phone) === 0) {
+      dispatch({ type: "USER_LOGIN", payload: data });
+      Cookies.set("token", data.token);
+      router.push("/profile");
+    } else {
+      setMess(data);
+    }
   };
   return (
     <Container
@@ -40,27 +55,28 @@ export default function Login() {
           >
             Login
           </Typography>
+          <Typography color="error" align="center">
+            {mes ? mes : null}
+          </Typography>
           <TextField
-            className="styleTextField"
-            type="email"
-            placeholder="Enter email adress"
+            type="tel"
+            placeholder="Enter phone number"
             required
-            size="small"
+            size="large"
             variant="standard"
             InputProps={{ disableUnderline: true }}
             onChange={(e) =>
               setLoginCredential({
                 ...loginCredentials,
-                email: e.target.value,
+                phone: e.target.value,
               })
             }
           />
           <TextField
-            className="styleTextField"
             type="password"
             placeholder="Enter password"
             required
-            size="small"
+            size="large"
             variant="standard"
             InputProps={{
               endAdornment: <VisibilityIcon />,
