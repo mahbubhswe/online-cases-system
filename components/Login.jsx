@@ -12,6 +12,7 @@ import Cookies from "js-cookie";
 import React, { useState, useContext } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
+import NextLink from "next/link"
 import { contextStore } from "../utils/Store";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -48,15 +49,15 @@ export default function Login() {
       sx={{ mt: "50px", backgroundColor: "#FFFFFF", borderRadius: "6px" }}
     >
       <Paper sx={{ p: "25px" }} variant="none">
-      <Typography align="center">
-            <Image
-              src="/logo.png"
-              alt="logo logo"
-              width={200}
-              height={200}
-              quality={100}
-            />
-          </Typography>
+        <Typography align="center">
+          <Image
+            src="/logo.png"
+            alt="logo logo"
+            width={200}
+            height={200}
+            quality={100}
+          />
+        </Typography>
         <Stack spacing={1} component="form" onSubmit={hubmitHandler}>
           <Typography
             variant="bold"
@@ -103,6 +104,16 @@ export default function Login() {
           <Button type="submit" variant="contained">
             Login
           </Button>
+          <Typography>
+            <NextLink href="/password-reset" passHress>
+              <a>Forgot password?</a>
+            </NextLink>
+          </Typography>
+          <Typography>
+            <NextLink href="/registration" passHress>
+              <a style={{ color: "green" }}> Register now</a>
+            </NextLink>
+          </Typography>
         </Stack>
       </Paper>
       <Backdrop open={open}>
