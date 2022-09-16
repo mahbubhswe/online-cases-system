@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
-import NextLink from "next/link";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -152,14 +151,8 @@ export default function Login() {
             }
           />
           <Button type="submit" variant="contained">
-            Register
+            Login
           </Button>
-          <Typography align="center" sx={{ padingY: "3px" }}>
-            Already have an account?
-            <NextLink href="/login" passHress>
-              <a> Login</a>
-            </NextLink>
-          </Typography>
         </Stack>
       </Paper>
       <Backdrop open={open}>

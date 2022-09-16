@@ -10,7 +10,7 @@ import createEmotionCache from "../src/createEmotionCache";
 import Navbar from "../components/Navbar";
 import StoreProvider from "../utils/Store";
 const clientSideEmotionCache = createEmotionCache();
-
+import { UserAuthContextProvider } from "../utils/useAuthContext";
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
@@ -23,8 +23,10 @@ export default function MyApp(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div>
-            <Navbar />
-            <Component {...pageProps} />
+            <UserAuthContextProvider>
+              <Navbar />
+              <Component {...pageProps} />
+            </UserAuthContextProvider>
           </div>
         </ThemeProvider>
       </CacheProvider>
