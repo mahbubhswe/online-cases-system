@@ -11,14 +11,15 @@ import EditIcon from "@mui/icons-material/Edit";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import NoteIcon from "@mui/icons-material/Note";
+import { useRouter } from "next/router";
 export default function Option() {
-  
+  const router = useRouter();
   return (
     <List dense={true}>
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <AccountCircleIcon/>
+            <AccountCircleIcon />
           </ListItemIcon>
           <ListItemText>Profile</ListItemText>
         </ListItemButton>
@@ -26,7 +27,7 @@ export default function Option() {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <EditIcon/>
+            <EditIcon />
           </ListItemIcon>
           <ListItemText>Update profile</ListItemText>
         </ListItemButton>
@@ -35,7 +36,7 @@ export default function Option() {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <NoteIcon/>
+            <NoteIcon />
           </ListItemIcon>
           <ListItemText>GD List</ListItemText>
         </ListItemButton>
@@ -43,17 +44,17 @@ export default function Option() {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <NoteAddIcon/>
+            <NoteAddIcon />
           </ListItemIcon>
           <ListItemText>New GD</ListItemText>
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding>
-        <ListItemButton >
-          <ListItemIcon sx={{color:"red"}}>
-            <VerifiedUserIcon/>
+        <ListItemButton onClick={() => router.push("/verify-phone-number")}>
+          <ListItemIcon sx={{ color: "red" }}>
+            <VerifiedUserIcon />
           </ListItemIcon>
-          <ListItemText sx={{color:"red"}}>Verify your phone</ListItemText>
+          <ListItemText sx={{ color: "red" }}>Verify your phone</ListItemText>
         </ListItemButton>
       </ListItem>
     </List>
