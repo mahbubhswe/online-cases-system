@@ -4,6 +4,7 @@ import {
   writeStorage,
   deleteFromStorage,
 } from "@rehooks/local-storage";
+import Cookies from "js-cookie";
 export const contextStore = createContext();
 
 const reducer = (state, action) => {
@@ -15,6 +16,7 @@ const reducer = (state, action) => {
     }
     case "USER_LOGOUT": {
       deleteFromStorage("userInfo");
+      Cookies.remove("token");
       return { ...state, userInfo: null };
     }
 

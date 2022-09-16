@@ -10,8 +10,8 @@ export default function Profile({ data }) {
           <Typography>Name: {data.name }</Typography>
           <Typography>Phone: {data.phone }</Typography>
           <Typography>E-mail: {data.email }</Typography>
-          <Typography>Date Of Birth: {data.dob}</Typography>
-          <Typography>Adress: {data.address }</Typography>
+          <Typography>Date of Birth: {data.dob}</Typography>
+          <Typography>Address: {data.address }</Typography>
           <Typography>Joined: {moment(data.createdAt).format("MM-DD-YY") }</Typography>
         </Stack>
       </Paper>

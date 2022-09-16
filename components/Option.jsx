@@ -12,6 +12,7 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import NoteIcon from "@mui/icons-material/Note";
 export default function Option() {
+  
   return (
     <List dense={true}>
       <ListItem disablePadding>
@@ -48,11 +49,11 @@ export default function Option() {
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
+        <ListItemButton >
+          <ListItemIcon sx={{color:"red"}}>
             <VerifiedUserIcon/>
           </ListItemIcon>
-          <ListItemText>Verify phone</ListItemText>
+          <ListItemText sx={{color:"red"}}>Verify your phone</ListItemText>
         </ListItemButton>
       </ListItem>
     </List>
