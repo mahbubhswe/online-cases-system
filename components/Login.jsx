@@ -14,6 +14,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
 import { contextStore } from "../utils/Store";
 import { useRouter } from "next/router";
+import Image from "next/image";
+
 export default function Login() {
   const [open, setOpen] = useState(false);
   const [mes, setMess] = useState();
@@ -42,10 +44,19 @@ export default function Login() {
   };
   return (
     <Container
-      maxWidth="sm"
+      maxWidth="xs"
       sx={{ mt: "50px", backgroundColor: "#FFFFFF", borderRadius: "6px" }}
     >
       <Paper sx={{ p: "25px" }} variant="none">
+      <Typography align="center">
+            <Image
+              src="/logo.png"
+              alt="logo logo"
+              width={200}
+              height={200}
+              quality={100}
+            />
+          </Typography>
         <Stack spacing={1} component="form" onSubmit={hubmitHandler}>
           <Typography
             variant="bold"
