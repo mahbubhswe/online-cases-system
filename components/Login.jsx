@@ -72,6 +72,7 @@ export default function Login() {
             {mes ? mes : null}
           </Typography>
           <TextField
+            className="styleTextField"
             type="tel"
             placeholder="Enter phone number"
             required
@@ -86,6 +87,7 @@ export default function Login() {
             }
           />
           <TextField
+              className="styleTextField"
             type="password"
             placeholder="Enter password"
             required

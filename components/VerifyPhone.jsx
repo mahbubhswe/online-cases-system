@@ -80,6 +80,7 @@ export default function VerifyPhone({ phone, email }) {
                 </Typography>
                 <Typography id="recaptcha-container"></Typography>
                 <TextField
+                    className="styleTextField"
                   type="tel"
                   size="large"
                   variant="standard"
@@ -106,6 +107,7 @@ export default function VerifyPhone({ phone, email }) {
                   {otpError ? otpError : null}
                 </Typography>
                 <TextField
+                    className="styleTextField"
                   type="number"
                   size="large"
                   variant="standard"

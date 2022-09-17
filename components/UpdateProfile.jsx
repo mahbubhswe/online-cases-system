@@ -66,6 +66,7 @@ export default function UpdateProfile({ data }) {
           Update Profile
         </Typography>
         <TextField
+            className="styleTextField"
           type="text"
           name="name"
           value={user.name}
@@ -77,6 +78,7 @@ export default function UpdateProfile({ data }) {
           onChange={handleInput}
         />
         <TextField
+            className="styleTextField"
           type="email"
           name="email"
           value={user.email}
@@ -88,6 +90,7 @@ export default function UpdateProfile({ data }) {
           onChange={handleInput}
         />
         <TextField
+            className="styleTextField"
           type="tel"
           name="phone"
           value={user.phone}
@@ -99,6 +102,7 @@ export default function UpdateProfile({ data }) {
           onChange={handleInput}
         />
         <TextField
+            className="styleTextField"
           type="text"
           name="dob"
           value={user.dob}
@@ -110,6 +114,7 @@ export default function UpdateProfile({ data }) {
           onChange={handleInput}
         />
         <TextField
+            className="styleTextField"
           type="text"
           name="address"
           value={user.address}

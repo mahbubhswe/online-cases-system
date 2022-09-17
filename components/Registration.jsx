@@ -74,6 +74,7 @@ export default function Login() {
             {mes ? mes : null}
           </Typography>
           <TextField
+              className="styleTextField"
             type="text"
             placeholder="Enter your name"
             size="large"
@@ -84,6 +85,7 @@ export default function Login() {
             helperText={errors?.name ? errors.name.message : null}
           />
           <TextField
+              className="styleTextField"
             type="email"
             placeholder="Enter email adress"
             size="large"
@@ -94,6 +96,7 @@ export default function Login() {
             helperText={errors?.email ? errors.email.message : null}
           />
           <TextField
+              className="styleTextField"
             type="text"
             placeholder="Enter phone number"
             size="large"
@@ -104,6 +107,7 @@ export default function Login() {
             helperText={errors?.phone ? errors.phone.message : null}
           />
           <TextField
+              className="styleTextField"
             type="date"
             size="large"
             variant="standard"
@@ -113,6 +117,7 @@ export default function Login() {
             helperText={errors?.dob ? errors.dob.message : null}
           />
           <TextField
+              className="styleTextField"
             type="text"
             placeholder="Enter address"
             size="large"
@@ -123,6 +128,7 @@ export default function Login() {
             helperText={errors?.address ? errors.address.message : null}
           />
           <TextField
+              className="styleTextField"
             type="password"
             placeholder="Enter password"
             size="large"
@@ -136,6 +142,7 @@ export default function Login() {
             helperText={errors?.password ? errors.password.message : null}
           />
           <TextField
+              className="styleTextField"
             type="password"
             placeholder="Re-enter password"
             size="large"
