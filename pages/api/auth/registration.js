@@ -7,14 +7,14 @@ handler.post(async (req, res, next) => {
   try {
     await connectMongo();
     //check phone exist or not
-    const isExist = await User.findOne({ phone: req.body.phone });
+    const isExist = await User.findOne({ phone:  `+88${req.body.phone}` });
     if (isExist) {
      return res.send("Sorry, this phone number already exists with another account.");
     }
     const newUser = new User({
       name: req.body.name,
       email: req.body.email,
-      phone: req.body.phone,
+      phone: `+88${req.body.phone}`,
       dob: req.body.dob,
       address: req.body.address,
       password: bcryptjs.hashSync(req.body.password),

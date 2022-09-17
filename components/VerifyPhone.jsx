@@ -1,3 +1,4 @@
+import { Router } from "@mui/icons-material";
 import {
   Button,
   Container,
@@ -38,7 +39,7 @@ export default function VerifyPhone() {
     e.preventDefault();
     try {
       await confirmOtp.confirm(otp);
-      setIsVerify("verified successfully");
+      Router.push("/profile");
     } catch (error) {
       setOtpError(error.message);
     }

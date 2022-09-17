@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import React, { useState, useContext } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
-import NextLink from "next/link"
+import NextLink from "next/link";
 import { contextStore } from "../utils/Store";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -35,7 +35,8 @@ export default function Login() {
       `/api/auth/login?phone=${loginCredentials.phone}&password=${loginCredentials.password}`
     );
     setOpen(false);
-    if (loginCredentials.phone.localeCompare(data.phone) === 0) {
+    const phone = `+88${loginCredentials.phone}`;
+    if (phone.localeCompare(data.phone) === 0) {
       dispatch({ type: "USER_LOGIN", payload: data });
       Cookies.set("token", data.token);
       router.push("/profile");

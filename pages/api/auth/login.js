@@ -5,9 +5,11 @@ import bcryptjs from "bcryptjs";
 import { signToken } from "../../../utils/auth.js";
 const handler = nc();
 handler.post(async (req, res, next) => {
+  const phone = `+88${req.query.phone}`;
+  console.log(phone);
   try {
     await connectMongo();
-    const user = await User.findOne({ phone: req.query.phone });
+    const user = await User.findOne({ phone: phone });
     if (user && bcryptjs.compareSync(req.query.password, user.password)) {
       const token = signToken(user);
       res.status(200).send({

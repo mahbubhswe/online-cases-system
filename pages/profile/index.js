@@ -9,10 +9,9 @@ const getProfile = (url) => axios.get(url).then((res) => res.data);
 export default function Index() {
   const [userInfo] = useLocalStorage("userInfo");
   const { data, error } = useSWR(
-    `/api/user/getProfile?phone=${userInfo?userInfo.phone:null}`,
+    `/api/user/getProfile?email=${userInfo?userInfo.email:null}`,
     getProfile
   );
-
   if (!data) {
     return (
       <ProfileLayout pageTitle="Loading...">

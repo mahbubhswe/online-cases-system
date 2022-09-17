@@ -5,7 +5,7 @@ const handler = nextConnect();
 handler.get(async (req, res) => {
   try {
     await connectMongo();
-    const user = await User.findOne({ phone: req.query.phone });
+    const user = await User.findOne({ email: req.query.email });
     res.send(user);
   } catch (error) {
     console.log(error.message);
