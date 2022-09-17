@@ -1,5 +1,4 @@
 "use strict";
-import { useRouter } from "next/router";
 import {
   Button,
   Container,
@@ -16,13 +15,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useUserAuth } from "../utils/useAuthContext";
-export default function VerifyPhone({phone}) {
+export default function VerifyPhone({ phone, email }) {
   const [otp, setOtp] = useState();
   const [activeStep, setActiveStep] = useState(0);
   const [confirmOtp, setConfirmOtp] = useState();
   const [otpError, setOtpError] = useState();
   const { setUpRecaptcha } = useUserAuth();
-  const router=useRouter()
   //send code
   const sendVerificationCode = async () => {
     try {
@@ -39,24 +37,20 @@ export default function VerifyPhone({phone}) {
     e.preventDefault();
     try {
       await confirmOtp.confirm(otp);
-      const { data } = await axios.put(`/api/user/verifyPhone?phone=${phone}`);
+      const { data } = await axios.put(`/api/user/verifyPhone?email=${email}`);
       if (data == "Sorry, account not found!") {
-        Swal.fire({
-          title: "Success",
-          text: "Verification successfully completed.",
-          icon: "success",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "Ok",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            router.push("/profile");
-          }
-        });
-      } else {
         Swal.fire({
           title: "Failed to verify",
           text: "Failed to verify your account",
           icon: "error",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Ok",
+        });
+      } else {
+        Swal.fire({
+          title: "Success",
+          text: "Verification successfully completed.",
+          icon: "success",
           confirmButtonColor: "#3085d6",
           confirmButtonText: "Ok",
         });
@@ -133,7 +127,6 @@ export default function VerifyPhone({phone}) {
             </StepContent>
           </Step>
         </Stepper>
-        
       </Paper>
     </Container>
   );

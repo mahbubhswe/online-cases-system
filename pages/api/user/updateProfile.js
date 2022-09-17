@@ -6,13 +6,8 @@ const handler = nc();
 handler.put(async (req, res) => {
   try {
     await connectMongo();
-    const user = await User.findOne({ email: req.query.email });
-    if (user) {
-      await User.findByIdAndUpdate({ _id: user._id }, { isVerified: true });
-      res.send(`Verified successfully`);
-    } else {
-      res.send(`Sorry, account not found!`);
-    }
+    await User.findByIdAndUpdate({ _id: req.body.id }, { ...req.body });
+    res.send(`Profile updated successfully`);
   } catch (error) {
     console.log(error.message);
   }

@@ -17,7 +17,7 @@ export default function Option() {
   return (
     <List dense={true}>
       <ListItem disablePadding>
-        <ListItemButton>
+        <ListItemButton onClick={() => router.push("/profile")}>
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
@@ -25,7 +25,7 @@ export default function Option() {
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding>
-        <ListItemButton>
+        <ListItemButton onClick={() => router.push("/profile/update")}>
           <ListItemIcon>
             <EditIcon />
           </ListItemIcon>

@@ -5,10 +5,13 @@ import useLocalStorage from "@rehooks/local-storage";
 
 export default function Index() {
   const [userInfo] = useLocalStorage("userInfo");
-
   return (
     <Layout pageTitle="Phone verification">
-      <VerifyPhone phone={userInfo?userInfo.phone:null}/>;
+      <VerifyPhone
+        phone={userInfo ? userInfo.phone : null}
+        email={userInfo ? userInfo.email : null}
+      />
+      ;
     </Layout>
   );
 }
