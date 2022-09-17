@@ -1,4 +1,5 @@
-import { Router } from "@mui/icons-material";
+"use strict";
+import { useRouter } from "next/router";
 import {
   Button,
   Container,
@@ -11,18 +12,17 @@ import {
   Typography,
   Stepper,
 } from "@mui/material";
-import useLocalStorage from "@rehooks/local-storage";
+import axios from "axios";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import { useUserAuth } from "../utils/useAuthContext";
-export default function VerifyPhone() {
+export default function VerifyPhone({phone}) {
   const [otp, setOtp] = useState();
   const [activeStep, setActiveStep] = useState(0);
-  const [isVerify, setIsVerify] = useState();
   const [confirmOtp, setConfirmOtp] = useState();
   const [otpError, setOtpError] = useState();
-  const [phone, setPhone] = useState();
-  const [userInfo] = useLocalStorage("userInfo");
   const { setUpRecaptcha } = useUserAuth();
+  const router=useRouter()
   //send code
   const sendVerificationCode = async () => {
     try {
@@ -39,7 +39,28 @@ export default function VerifyPhone() {
     e.preventDefault();
     try {
       await confirmOtp.confirm(otp);
-      Router.push("/profile");
+      const { data } = await axios.put(`/api/user/verifyPhone?phone=${phone}`);
+      if (data == "Sorry, account not found!") {
+        Swal.fire({
+          title: "Success",
+          text: "Verification successfully completed.",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Ok",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.push("/profile");
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Failed to verify",
+          text: "Failed to verify your account",
+          icon: "error",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Ok",
+        });
+      }
     } catch (error) {
       setOtpError(error.message);
     }
@@ -70,8 +91,7 @@ export default function VerifyPhone() {
                   variant="standard"
                   InputProps={{ disableUnderline: true }}
                   placeholder="Enter phone number"
-                  value={userInfo ? userInfo.phone : null}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={phone}
                 />
                 <Button
                   color="secondary"
@@ -113,9 +133,7 @@ export default function VerifyPhone() {
             </StepContent>
           </Step>
         </Stepper>
-        <Typography color="secondary" align="center">
-          {isVerify ? isVerify : null}
-        </Typography>
+        
       </Paper>
     </Container>
   );
