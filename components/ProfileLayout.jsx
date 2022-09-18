@@ -11,7 +11,13 @@ export default function ProfileLayout({ children, pageTitle }) {
       </Head>
       <main>
         <Stack direction="row">
-          <Box sx={{ width: "250px", height: "100vh" }}>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "block", md: "block" },
+              width: "250px",
+              height: "100vh",
+            }}
+          >
             <Option />
           </Box>
           <Box

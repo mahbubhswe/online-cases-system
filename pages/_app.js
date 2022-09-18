@@ -18,6 +18,7 @@ export default function MyApp(props) {
     <StoreProvider>
       <CacheProvider value={emotionCache}>
         <Head>
+          <title>Home | Online GD System</title>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>
