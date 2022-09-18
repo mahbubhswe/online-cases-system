@@ -107,12 +107,13 @@ export default function Login() {
           <Button type="submit" variant="contained">
             Login
           </Button>
-          <Typography>
+          {/* <Typography>
             <NextLink href="/password-reset" passHress>
               <a>Forgot password?</a>
             </NextLink>
-          </Typography>
+          </Typography> */}
           <Typography>
+            {"Don't have an account?"}
             <NextLink href="/registration" passHress>
               <a style={{ color: "green" }}> Register now</a>
             </NextLink>
